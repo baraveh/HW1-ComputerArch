@@ -2,7 +2,26 @@
 // Created by Bar on 08/04/2019.
 //
 
+
 #include "bp_api.h"
+
+class branchP{
+    unsigned btbSize;
+    unsigned historySize;
+    unsigned tagSize;
+    unsigned fsmState;
+    bool isGlocalHist;
+    bool isGlobalTable;
+    int Shared;
+
+public:
+    branchP() = default;
+    branchP(branchP&) = default;
+    ~branchP() = default;
+};
+
+
+branchP globalBranchP;
 
 /***********************************************************/
 /* HW functions */
