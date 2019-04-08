@@ -7,8 +7,14 @@
 #include <vector>
 #include <map>
 #include <math.h>
+#include <assert.h>
 
-typedef struct { bool branch; uint32_t target; } prediction;
+#define MAX_HISTORY_SIZE 64
+
+typedef struct { bool branch; uint32_t target; } prediction_t;
+typedef struct { uint32_t target; uint32_t idx; } btbEntry_t;
+typedef uint32_t tag_t;
+typedef uint64_t historyEntry_t;
 
 enum SHARE_POLICY {
 	NO_SHARE = 0,
@@ -31,9 +37,9 @@ class BranchP {
     bool m_isGlobalHist;
     bool m_isGlobalTable;
     SHARE_POLICY m_shared;
-	std::map<uint32_t,uint32_t> m_btb;
-	std::vector<uint64_t> m_history;
-	uint64_t m_history_mask;
+	std::map<tag_t, btbEntry_t> m_btb;
+	std::vector<historyEntry_t> m_history;
+	historyEntry_t m_history_mask;
 	std::vector<std::vector<FSM_PRED>> m_FSM;
 
 	uint32_t FindBTBVictim() {}
@@ -50,13 +56,14 @@ public:
 		m_isGlobalTable(isGlobalTable), 
 		m_shared(static_cast<SHARE_POLICY>(Shared))
 	{
-		m_history = (m_isGlobalHist) ? std::vector<uint64_t>(1, 0) : std::vector<uint64_t>(m_btbSize, 0);
+		assert(historySize <= MAX_HISTORY_SIZE);
+		m_history = (m_isGlobalHist) ? std::vector<historyEntry_t>(1, 0) : std::vector<historyEntry_t>(m_btbSize, 0);
 		uint32_t N_fsm = (m_isGlobalTable) ? 1 : m_history.size();
 		m_FSM = std::vector<std::vector<FSM_PRED>>( N_fsm, std::vector<FSM_PRED>( std::pow(2, historySize), m_fsmState ) );
 	}
 	void Update() {}
 
-	prediction Predict(uint32_t pc) {}
+	prediction_t Predict(uint32_t pc) {}
 
 	SIM_stats& GetStats() {}
 
