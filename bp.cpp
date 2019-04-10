@@ -40,7 +40,6 @@ enum FSM_PRED {
 };
 
 class BranchP {
-    unsigned m_tagSize;
     FSM_PRED m_fsmState;
     bool m_isGlobalHist;
     bool m_isGlobalTable;
@@ -130,12 +129,11 @@ public:
     BranchP(unsigned btbSize, unsigned historySize, unsigned tagSize,
             unsigned fsmState,
             bool isGlobalHist, bool isGlobalTable, int Shared) :
-            m_historyMask(uint32_t (POW2(historySize) - 1)),
-            m_tagSize(tagSize),
             m_fsmState(static_cast<FSM_PRED>(fsmState)),
             m_isGlobalHist(isGlobalHist),
             m_isGlobalTable(isGlobalTable),
             m_shared(static_cast<SHARE_POLICY>(Shared)),
+			m_historyMask(uint32_t(POW2(historySize) - 1)),
 			m_stats({ 0,0,0 }) {
 
 		m_stats.size = CalcTheoreticalSize(btbSize, historySize, tagSize, isGlobalHist, isGlobalTable);
