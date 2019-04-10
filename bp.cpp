@@ -168,7 +168,6 @@ public:
 		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 
 		if (m_btb[btbIdx].tag == tag && m_btb[btbIdx].tag != NO_TAG) {
-			UpdatePred(pred, taken);
 			//update history
 			history <<= 1;
 			history += static_cast<historyEntry_t>(taken);
@@ -179,6 +178,7 @@ public:
 			history = 0;
 			pred = m_fsmState;
 		}
+		UpdatePred(pred, taken);
 	}
 
 	prediction_t Predict(uint32_t pc) {
@@ -192,8 +192,6 @@ public:
 		if (m_btb[btbIdx].tag != tag) { // cant find tag
 			return resPred;
 		}
-		resPred.target = m_btb[btbIdx].target;
-
 		historyEntry_t hist = m_history[histIdx];
 		FSM_PRED pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, hist)];
 		if (pred == STRONG_NOT_TAKEN || pred == WEAK_NOT_TAKEN) {
@@ -201,6 +199,7 @@ public:
 		}
 		else {
 			resPred.branch = true;
+			resPred.target = m_btb[btbIdx].target;
 		}
 		return resPred;
 	}
