@@ -10,8 +10,8 @@
 #include <assert.h>
 
 #define MAX_HISTORY_SIZE 8
-#define POW2(exp) (1 << (exp))
-#define NO_TAG (~0)
+#define POW2(exp) ((uint32_t)(1 << (exp)))
+#define NO_TAG ((uint32_t)~0)
 
 typedef struct {
     bool branch;
@@ -40,7 +40,6 @@ enum FSM_PRED {
 
 class BranchP {
     SIM_stats m_stats;
-    unsigned m_btbSize;
     unsigned m_tagSize;
     FSM_PRED m_fsmState;
     bool m_isGlobalHist;
@@ -103,7 +102,7 @@ class BranchP {
 		case LSB_SHARE:
 			return history ^ pc;
 		case MID_SHARE:
-			pc >> 14;
+			pc >>= 14;
 			return history ^ pc;
 		default:
 			return history;
@@ -120,12 +119,11 @@ class BranchP {
 
 
 public:
-    BranchP() = default; //added so the global parameter will be initialized
+    BranchP() = default; //TODO
     BranchP(unsigned btbSize, unsigned historySize, unsigned tagSize,
             unsigned fsmState,
             bool isGlobalHist, bool isGlobalTable, int Shared) :
-            m_btbSize(btbSize),
-            m_historyMask(std::pow(2, historySize) - 1),
+            m_historyMask(uint32_t (POW2(historySize) - 1)),
             m_tagSize(tagSize),
             m_fsmState(static_cast<FSM_PRED>(fsmState)),
             m_isGlobalHist(isGlobalHist),
@@ -136,15 +134,15 @@ public:
 
         assert(historySize <= MAX_HISTORY_SIZE);
         m_history = (m_isGlobalHist) ? std::vector<historyEntry_t>(1, 0)
-                                     : std::vector<historyEntry_t>(m_btbSize, 0);
+                                     : std::vector<historyEntry_t>(btbSize, 0);
         uint32_t N_fsm = (m_isGlobalTable) ? 1 : m_history.size();
         m_FSM = std::vector<std::vector<FSM_PRED>>(N_fsm, std::vector<FSM_PRED>(
 			POW2(historySize), m_fsmState));
 		
 		m_btb = std::vector<btbEntry_t>(btbSize, { NO_TAG, 0 });
 
-		assert(NBits(m_btbSize) == 1); //btb size is power of 2.
-		uint32_t bitsRequired = MSBIndex(m_btbSize) - 1;
+		assert(NBits(btbSize) == 1); //btb size is power of 2.
+		uint32_t bitsRequired = MSBIndex(btbSize) - 1;
 		m_idxMask = (POW2(bitsRequired) - 1) << 2;
 
 		m_tagMask = (POW2(tagSize) - 1) << 2;
@@ -162,9 +160,9 @@ public:
 		if (m_btb[btbIdx].tag == tag && m_btb[btbIdx].tag != NO_TAG) {
 			UpdatePred(pred, taken);
 			//update history
-			history << 1;
+			history <<= 1;
 			history += static_cast<historyEntry_t>(taken);
-			history & m_historyMask;
+			history &= m_historyMask;
 		}
 		else { //tag is not in btb (direct mapping)
 			m_btb[btbIdx] = { tag, targetPc };
@@ -180,7 +178,7 @@ public:
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
 		uint32_t histIdx = (m_isGlobalHist) ? 0 : btbIdx;
 
-		prediction_t resPred = { false, pc + 4 };
+		resPred = { false, pc + 4 };
 		if (m_btb[btbIdx].tag != tag) { // cant find tag
 			return resPred;
 		}
