@@ -11,6 +11,7 @@
 
 #define MAX_HISTORY_SIZE 8
 #define POW2(exp) (1 << (exp))
+#define NO_TAG (~0)
 
 typedef struct {
     bool branch;
@@ -53,9 +54,6 @@ class BranchP {
 	uint32_t flushCounter;
 	uint32_t m_idxMask;
 	uint32_t m_tagMask;
-    uint32_t FindBTBVictim() {
-		
-	}
 
 	static uint32_t MSBIndex(uint32_t x) {
 		uint32_t msb = 0;
@@ -95,10 +93,9 @@ class BranchP {
 		}
 	}
 
-	uint32_t GetFSMIdx(uint32_t pc, uint32_t history) {
+	uint32_t GetFSMIdx(uint32_t pc, historyEntry_t history) {
 		history &= m_historyMask;
 		pc >>= 2;
-		uint32_t idx = history;
 		switch (m_shared)
 		{
 		case NO_SHARE:
@@ -143,9 +140,11 @@ public:
         uint32_t N_fsm = (m_isGlobalTable) ? 1 : m_history.size();
         m_FSM = std::vector<std::vector<FSM_PRED>>(N_fsm, std::vector<FSM_PRED>(
 			POW2(historySize), m_fsmState));
+		
+		m_btb = std::vector<btbEntry_t>(btbSize, { NO_TAG, 0 });
 
-		uint32_t bitsRequired = (NBits(m_btbSize) == 1) ? MSBIndex(m_btbSize) - 1 :
-			MSBIndex(m_btbSize); //number of bits required to index btb
+		assert(NBits(m_btbSize) == 1); //btb size is power of 2.
+		uint32_t bitsRequired = MSBIndex(m_btbSize) - 1;
 		m_idxMask = (POW2(bitsRequired) - 1) << 2;
 
 		m_tagMask = (POW2(tagSize) - 1) << 2;
@@ -160,7 +159,7 @@ public:
 		historyEntry_t& history = m_history[histIdx];
 		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 
-		if (m_btb[btbIdx].tag == tag) {
+		if (m_btb[btbIdx].tag == tag && m_btb[btbIdx].tag != NO_TAG) {
 			UpdatePred(pred, taken);
 			//update history
 			history << 1;
@@ -183,7 +182,7 @@ public:
 
 		prediction_t resPred = { false, pc + 4 };
 		if (m_btb[btbIdx].tag != tag) { // cant find tag
-			return;
+			return resPred;
 		}
 		resPred.target = m_btb[btbIdx].target;
 
