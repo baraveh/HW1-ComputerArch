@@ -12,7 +12,7 @@
 #define MAX_HISTORY_SIZE 8
 #define POW2(exp) ((uint32_t)(1 << (exp)))
 #define NO_TAG ((uint32_t)~0)
-#define ADDRESS_SIZE 32
+#define ADDRESS_BIT_SIZE 30
 
 typedef struct {
     bool branch;
@@ -119,7 +119,7 @@ class BranchP {
 
 	static unsigned CalcTheoreticalSize(unsigned btbSize, unsigned historySize, unsigned tagSize,
 		bool isGlobalHist, bool isGlobalTable) {
-		unsigned size = btbSize * (tagSize + ADDRESS_SIZE);
+		unsigned size = btbSize * (tagSize + ADDRESS_BIT_SIZE);
 		size += (isGlobalHist) ? historySize : btbSize * historySize;
 		size += (isGlobalTable) ? (2 * POW2(historySize)) : btbSize * (2 * POW2(historySize));
 		return size;
