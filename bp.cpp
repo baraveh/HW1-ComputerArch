@@ -158,12 +158,20 @@ public:
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
 		uint32_t histIdx = (m_isGlobalHist) ? 0 : btbIdx;
 		historyEntry_t& history = m_history[histIdx];
-		FSM_PRED& prevPred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
-		UpdatePred(prevPred, taken);
-		//update history
-		history << 1;
-		history += static_cast<historyEntry_t>(taken);
-		history & m_historyMask;
+		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
+
+		if (m_btb[btbIdx].tag == tag) {
+			UpdatePred(pred, taken);
+			//update history
+			history << 1;
+			history += static_cast<historyEntry_t>(taken);
+			history & m_historyMask;
+		}
+		else { //tag is not in btb (direct mapping)
+			m_btb[btbIdx] = { tag, targetPc };
+			history = 0;
+			pred = m_fsmState;
+		}
 	}
 
 	prediction_t Predict(uint32_t pc) {
@@ -192,7 +200,6 @@ public:
 
     SIM_stats &GetStats() {}
 
-
 };
 
 
@@ -206,7 +213,7 @@ BranchP globalBranchP;
 int BP_init(unsigned btbSize, unsigned historySize, unsigned tagSize,
             unsigned fsmState,
             bool isGlobalHist, bool isGlobalTable, int Shared) {
-
+	globalBranchP = BranchP(btbSize, historySize, tagSize, fsmState, isGlobalHist, isGlobalTable, Shared);
 }
 
 
@@ -218,9 +225,9 @@ bool BP_predict(uint32_t pc, uint32_t *dst) {
 }
 
 void BP_update(uint32_t pc, uint32_t targetPc, bool taken, uint32_t pred_dst) {
-
+	globalBranchP.Update(pc, targetPc, taken, pred_dst);
 }
 
 void BP_GetStats(SIM_stats *curStats) {
-
+	*curStats = globalBranchP.GetStats();
 }
