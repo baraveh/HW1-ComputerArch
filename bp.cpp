@@ -12,6 +12,7 @@
 #define MAX_HISTORY_SIZE 8
 #define POW2(exp) ((uint32_t)(1 << (exp)))
 #define NO_TAG ((uint32_t)~0)
+#define ADDRESS_SIZE 32
 
 typedef struct {
     bool branch;
@@ -39,7 +40,6 @@ enum FSM_PRED {
 };
 
 class BranchP {
-    SIM_stats m_stats;
     unsigned m_tagSize;
     FSM_PRED m_fsmState;
     bool m_isGlobalHist;
@@ -49,8 +49,7 @@ class BranchP {
     std::vector<historyEntry_t> m_history;
     historyEntry_t m_historyMask;
     std::vector<std::vector<FSM_PRED>> m_FSM;
-	uint32_t barnchCounter;
-	uint32_t flushCounter;
+	SIM_stats m_stats;
 	uint32_t m_idxMask;
 	uint32_t m_tagMask;
 
@@ -95,6 +94,7 @@ class BranchP {
 	uint32_t GetFSMIdx(uint32_t pc, historyEntry_t history) {
 		history &= m_historyMask;
 		pc >>= 2;
+		pc &= m_historyMask;
 		switch (m_shared)
 		{
 		case NO_SHARE:
@@ -117,9 +117,16 @@ class BranchP {
 		return (pc & m_idxMask) >> 2;
 	}
 
+	static unsigned CalcTheoreticalSize(unsigned btbSize, unsigned historySize, unsigned tagSize,
+		bool isGlobalHist, bool isGlobalTable) {
+		unsigned size = btbSize * (tagSize + ADDRESS_SIZE);
+		size += (isGlobalHist) ? historySize : btbSize * historySize;
+		size += (isGlobalTable) ? (2 * POW2(historySize)) : btbSize * (2 * POW2(historySize));
+		return size;
+	}
+
 
 public:
-    BranchP() = default; //TODO
     BranchP(unsigned btbSize, unsigned historySize, unsigned tagSize,
             unsigned fsmState,
             bool isGlobalHist, bool isGlobalTable, int Shared) :
@@ -129,8 +136,9 @@ public:
             m_isGlobalHist(isGlobalHist),
             m_isGlobalTable(isGlobalTable),
             m_shared(static_cast<SHARE_POLICY>(Shared)),
-			barnchCounter(0),
-			flushCounter(0) {
+			m_stats({ 0,0,0 }) {
+
+		m_stats.size = CalcTheoreticalSize(btbSize, historySize, tagSize, isGlobalHist, isGlobalTable);
 
         assert(historySize <= MAX_HISTORY_SIZE);
         m_history = (m_isGlobalHist) ? std::vector<historyEntry_t>(1, 0)
@@ -150,6 +158,10 @@ public:
     }
 
     void Update(uint32_t pc, uint32_t targetPc, bool taken, uint32_t pred_dst) {
+		m_stats.br_num++;
+		prediction_t predictedTaken = Predict(pc);
+		m_stats.flush_num += (predictedTaken.branch != taken || predictedTaken.target != targetPc);
+
 		tag_t tag = GetTag(pc);
 		uint32_t btbIdx = GetBTBIdx(pc);
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
@@ -195,13 +207,15 @@ public:
 		return resPred;
 	}
 
-    SIM_stats &GetStats() {}
+    SIM_stats GetStats() {
+		return m_stats;
+	}
 
 };
 
 
 
-BranchP globalBranchP;
+BranchP globalBranchP(1,1,0,0,1,1,0);
 
 /***********************************************************/
 /* HW functions */
@@ -211,6 +225,7 @@ int BP_init(unsigned btbSize, unsigned historySize, unsigned tagSize,
             unsigned fsmState,
             bool isGlobalHist, bool isGlobalTable, int Shared) {
 	globalBranchP = BranchP(btbSize, historySize, tagSize, fsmState, isGlobalHist, isGlobalTable, Shared);
+	return 0;
 }
 
 
