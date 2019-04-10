@@ -157,7 +157,7 @@ public:
     void Update(uint32_t pc, uint32_t targetPc, bool taken, uint32_t pred_dst) {
 		m_stats.br_num++;
 		prediction_t predictedTaken = Predict(pc);
-		m_stats.flush_num += (predictedTaken.branch != taken || predictedTaken.target != targetPc);
+		m_stats.flush_num += (predictedTaken.branch != taken || (taken && predictedTaken.target != targetPc));
 
 		tag_t tag = GetTag(pc);
 		uint32_t btbIdx = GetBTBIdx(pc);
