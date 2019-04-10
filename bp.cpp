@@ -140,7 +140,7 @@ public:
         assert(historySize <= MAX_HISTORY_SIZE);
         m_history = (m_isGlobalHist) ? std::vector<historyEntry_t>(1, 0)
                                      : std::vector<historyEntry_t>(btbSize, 0);
-        uint32_t N_fsm = (m_isGlobalTable) ? 1 : m_history.size();
+        uint32_t N_fsm = (m_isGlobalTable) ? 1 : btbSize;
         m_FSM = std::vector<std::vector<FSM_PRED>>(N_fsm, std::vector<FSM_PRED>(
 			POW2(historySize), m_fsmState));
 		
@@ -166,17 +166,18 @@ public:
 		historyEntry_t& history = m_history[histIdx];
 		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 
-		if (m_btb[btbIdx].tag == tag && m_btb[btbIdx].tag != NO_TAG) {
-			//update history
-			history <<= 1;
-			history += static_cast<historyEntry_t>(taken);
-			history &= m_historyMask;
-		}
-		else { //tag is not in btb (direct mapping)
+
+		if (m_btb[btbIdx].tag != tag || m_btb[btbIdx].tag == NO_TAG) {
+			//tag is not in btb (direct mapping)
 			m_btb[btbIdx] = { tag, targetPc };
-			history = 0;
 			pred = m_fsmState;
+			history = 0;
 		}
+
+		//update history
+		history <<= 1;
+		history += static_cast<historyEntry_t>(taken);
+		history &= m_historyMask;
 		UpdatePred(pred, taken);
 	}
 
