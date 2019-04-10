@@ -93,16 +93,15 @@ class BranchP {
 	uint32_t GetFSMIdx(uint32_t pc, historyEntry_t history) {
 		history &= m_historyMask;
 		pc >>= 2;
-		pc &= m_historyMask;
 		switch (m_shared)
 		{
 		case NO_SHARE:
 			return history;
 		case LSB_SHARE:
-			return history ^ pc;
+			return (history ^ pc) & m_historyMask;
 		case MID_SHARE:
 			pc >>= 14;
-			return history ^ pc;
+			return (history ^ pc) & m_historyMask;;
 		default:
 			return history;
 		}
