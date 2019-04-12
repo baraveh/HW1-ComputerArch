@@ -1,0 +1,3 @@
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/cmake-build-debug/CMakeFiles/HW1_ComputerArch.dir
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/cmake-build-debug/CMakeFiles/edit_cache.dir

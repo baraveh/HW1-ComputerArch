@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/HW1_ComputerArch.dir/bp.cpp.o CMakeFiles/HW1_ComputerArch.dir/bp_main.c.o  -o HW1_ComputerArch 

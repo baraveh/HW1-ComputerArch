@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/bp_api.h
+stdbool.h
+-
+stdint.h
+-
+
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/bp_main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+stdbool.h
+-
+bp_api.h
+/mnt/c/Users/Bar The magical/Google Drive/Computer Architecture/HW1/HW1-ComputerArch/bp_api.h
+

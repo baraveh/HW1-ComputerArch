@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="HW1_ComputerArch" targetName="HW1_ComputerArch" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="653a38af-ea09-4abb-8eb4-3b8206fb8d97" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/tests - guy/run_all_tests_facebook.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tests - guy/run_all_tests_facebook.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/autoRun" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out10" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out11" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out12" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out13" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out14" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out15" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out16" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out17" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out18" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out19" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out20" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_out9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong13.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong14.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong15.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong16.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong17.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong18.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong19.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testLong20.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests - itamar/mat_testShort9.txt" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bp_api.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+              <folding>
+                <element signature="e#173#193#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bp_main.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-604">
+              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bp.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
+              <folding>
+                <element signature="e#41#60#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/bp_api.h" />
+        <option value="$PROJECT_DIR$/bp.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="width" value="1374" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="HW1_ComputerArch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HW1-ComputerArch" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HW1_ComputerArch" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HW1-ComputerArch" type="462c0819:PsiDirectoryNode" />
+              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="?" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="HW1_ComputerArch" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="test1.in" PASS_PARENT_ENVS_2="true" PROJECT_NAME="HW1_ComputerArch" TARGET_NAME="HW1_ComputerArch" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="HW1_ComputerArch" RUN_TARGET_NAME="HW1_ComputerArch">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="653a38af-ea09-4abb-8eb4-3b8206fb8d97" name="Default Changelist" comment="" />
+      <created>1554721767401</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554721767401</updated>
+      <workItem from="1554721777286" duration="2315000" />
+      <workItem from="1554726042156" duration="114000" />
+      <workItem from="1554729056467" duration="970000" />
+      <workItem from="1554730755089" duration="3790000" />
+      <workItem from="1554825541845" duration="82000" />
+      <workItem from="1554825788471" duration="3027000" />
+      <workItem from="1554890589615" duration="338000" />
+      <workItem from="1554892101427" duration="638000" />
+      <workItem from="1554894325999" duration="67000" />
+      <workItem from="1554969570184" duration="126000" />
+      <workItem from="1554969722271" duration="981000" />
+      <workItem from="1555093083502" duration="1920000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1554721872181</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1554721872181</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Beginning - Master Branch">
+      <created>1554722481931</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1554722481931</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Put function bodies inside bp.cpp">
+      <created>1554723655693</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1554723655693</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Global object - branchP">
+      <created>1554731027108</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1554731027108</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Predict function - pre debug">
+      <created>1554828821254</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1554828821254</updated>
+    </task>
+    <task id="LOCAL-00006" summary="No warnings">
+      <created>1554892687773</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554892687773</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="14368000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.297166" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.32936078" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39964476" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4989339" weight="0.3268206" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.3997833" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.3285968" />
+      <window_info anchor="bottom" id="CMake" order="12" sideWeight="0.49959514" weight="0.3285968" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" weight="0.32955465" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32955465" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2574899" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Remote Host" order="3" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32955465" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="Beginning - Master Branch" />
+    <MESSAGE value="Put function bodies inside bp.cpp" />
+    <MESSAGE value="Global object - branchP" />
+    <MESSAGE value="Predict function - pre debug" />
+    <MESSAGE value="No warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="No warnings" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp" />
+    <entry file="file://$USER_HOME$/AppData/Local/Packages/CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc/LocalState/rootfs/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="57" selection-start-line="5" selection-start-column="57" selection-end-line="5" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bp_api.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding>
+            <element signature="e#173#193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bp_main.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-604">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bp.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#41#60#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
