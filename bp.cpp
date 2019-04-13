@@ -157,7 +157,11 @@ public:
     void Update(uint32_t pc, uint32_t targetPc, bool taken, uint32_t pred_dst) {
 		m_stats.br_num++;
 		prediction_t predictedTaken = Predict(pc);
-		m_stats.flush_num += (predictedTaken.branch != taken || (taken && predictedTaken.target != targetPc));
+
+		if ((taken && predictedTaken.target != targetPc) ||
+			(!taken && predictedTaken.target != pc + 4)) {
+			m_stats.flush_num++; //flush when predicted target != expected target
+		}
 
 		tag_t tag = GetTag(pc);
 		uint32_t btbIdx = GetBTBIdx(pc);
@@ -167,18 +171,26 @@ public:
 		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 
 
-		if (m_btb[btbIdx].tag != tag || m_btb[btbIdx].tag == NO_TAG) {
+		if (m_btb[btbIdx].tag != tag || m_btb[btbIdx].tag == NO_TAG ) {
 			//tag is not in btb (direct mapping)
 			m_btb[btbIdx] = { tag, targetPc };
-			pred = m_fsmState;
-			history = 0;
+			if (!m_isGlobalHist) {
+				history = 0;
+			}
+			if (!m_isGlobalTable) {
+				FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
+				pred = m_fsmState;
+			}
 		}
+
+		//corner case- same tag, different target. this is handled by the answer in QA forum.
+		m_btb[btbIdx].target = targetPc; 
 
 		//update history
 		history <<= 1;
 		history += static_cast<historyEntry_t>(taken);
 		history &= m_historyMask;
-		UpdatePred(pred, taken);
+		UpdatePred(pred, taken); //update prediction from old history
 	}
 
 	prediction_t Predict(uint32_t pc) {
