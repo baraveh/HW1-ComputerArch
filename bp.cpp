@@ -168,8 +168,6 @@ public:
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
 		uint32_t histIdx = (m_isGlobalHist) ? 0 : btbIdx;
 		historyEntry_t& history = m_history[histIdx];
-		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
-
 
 		if (m_btb[btbIdx].tag != tag || m_btb[btbIdx].tag == NO_TAG ) {
 			//tag is not in btb (direct mapping)
@@ -178,14 +176,14 @@ public:
 				history = 0;
 			}
 			if (!m_isGlobalTable) {
-				FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
-				pred = m_fsmState;
+				m_FSM[fsmTableIdx] = std::vector<FSM_PRED>(m_FSM[fsmTableIdx].size(), m_fsmState);
 			}
 		}
 
 		//corner case- same tag, different target. this is handled by the answer in QA forum.
 		m_btb[btbIdx].target = targetPc; 
 
+		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 		//update history
 		history <<= 1;
 		history += static_cast<historyEntry_t>(taken);
