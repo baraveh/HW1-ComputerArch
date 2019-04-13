@@ -8,6 +8,7 @@
 #include <map>
 #include <math.h>
 #include <assert.h>
+#include <iostream>
 
 #define MAX_HISTORY_SIZE 8
 #define POW2(exp) ((uint32_t)(1 << (exp)))
@@ -160,7 +161,7 @@ public:
 
 		if ((taken && predictedTaken.target != targetPc) ||
 			(!taken && predictedTaken.target != pc + 4)) {
-			m_stats.flush_num++; //flush when predicted target != expected target
+			m_stats.flush_num++;
 		}
 
 		tag_t tag = GetTag(pc);
@@ -213,6 +214,8 @@ public:
 			resPred.branch = true;
 			resPred.target = m_btb[btbIdx].target;
 		}
+		std::cout << "btb_index: " << btbIdx << " tag: " << tag << " fsm_table_index: " << fsmTableIdx << std::endl;
+		std::cout << "hist: " << hist;
 		return resPred;
 	}
 
