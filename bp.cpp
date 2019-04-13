@@ -157,7 +157,7 @@ public:
 
     void Update(uint32_t pc, uint32_t targetPc, bool taken, uint32_t pred_dst) {
 		m_stats.br_num++;
-		prediction_t predictedTaken = Predict(pc);
+		prediction_t predictedTaken = Predict(pc, 0);
 
 		if ((taken && predictedTaken.target != targetPc) ||
 			(!taken && predictedTaken.target != pc + 4)) {
@@ -169,8 +169,6 @@ public:
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
 		uint32_t histIdx = (m_isGlobalHist) ? 0 : btbIdx;
 		historyEntry_t& history = m_history[histIdx];
-		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
-
 
 		if (m_btb[btbIdx].tag != tag || m_btb[btbIdx].tag == NO_TAG ) {
 			//tag is not in btb (direct mapping)
@@ -179,8 +177,7 @@ public:
 				history = 0;
 			}
 			if (!m_isGlobalTable) {
-				FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
-				pred = m_fsmState;
+				m_FSM[fsmTableIdx] = std::vector<FSM_PRED>(m_FSM[fsmTableIdx].size(), m_fsmState);
 			}
 		}
 
@@ -188,25 +185,31 @@ public:
 		m_btb[btbIdx].target = targetPc; 
 
 		//update history
+		FSM_PRED& pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, history)];
 		history <<= 1;
 		history += static_cast<historyEntry_t>(taken);
 		history &= m_historyMask;
 		UpdatePred(pred, taken); //update prediction from old history
 	}
 
-	prediction_t Predict(uint32_t pc) {
+	prediction_t Predict(uint32_t pc, bool print=1) {
 		prediction_t resPred;
 		tag_t tag = GetTag(pc);
 		uint32_t btbIdx = GetBTBIdx(pc);
 		uint32_t fsmTableIdx = (m_isGlobalTable) ? 0 : btbIdx;
 		uint32_t histIdx = (m_isGlobalHist) ? 0 : btbIdx;
+		historyEntry_t hist = m_history[histIdx];
+		FSM_PRED pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, hist)];
 
+		if (print) {
+			std::cout << "btb_index: " << btbIdx << " tag: " << tag << " fsm_table_index: " << GetFSMIdx(pc, hist) << std::endl;
+			std::cout << "hist: " << hist << " pred: " << static_cast<int>(pred) << std::endl;
+		}
 		resPred = { false, pc + 4 };
+
 		if (m_btb[btbIdx].tag != tag) { // cant find tag
 			return resPred;
 		}
-		historyEntry_t hist = m_history[histIdx];
-		FSM_PRED pred = m_FSM[fsmTableIdx][GetFSMIdx(pc, hist)];
 		if (pred == STRONG_NOT_TAKEN || pred == WEAK_NOT_TAKEN) {
 			resPred.branch = false;
 		}
@@ -214,8 +217,6 @@ public:
 			resPred.branch = true;
 			resPred.target = m_btb[btbIdx].target;
 		}
-		std::cout << "btb_index: " << btbIdx << " tag: " << tag << " fsm_table_index: " << fsmTableIdx << std::endl;
-		std::cout << "hist: " << hist;
 		return resPred;
 	}
 
